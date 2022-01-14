@@ -1,5 +1,3 @@
-import {log} from "util";
-
 console.log('lesson 2');
 
 // Lexical environment
@@ -151,7 +149,7 @@ console.log(superSum(3)(2, 5)(3, 9))
 //sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
 
 function sumTo(x: number): number {
-    if (x == 1) {
+    if (x === 1) {
         return x;
     } else {
         return x + sumTo(x - 1);
@@ -178,7 +176,7 @@ let arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
 arr.flat(3);
 console.log(arr.flat(3))
 
-const flatFunc = (arr: Array<any>):Array<number> => {
+const flatFunc = (arr: Array<any>): Array<number> => {
     return arr.reduce((acc: Array<any>, el: number) => acc.concat(el), [])
 }
 console.log(flatFunc([1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]))
@@ -201,8 +199,8 @@ console.log(flatFunc2(arr2))
 // Для развёртывания многомерных массивов используем рекурсию, reduce и concat
 const arr3 = [1, 2, [3, 4, [5, 6]]];
 
-function flatFunc3(arr:any[], d = 1):[any] {
-    return d > 0 ? arr.reduce((acc, val):any => acc.concat(Array.isArray(val) ? flatFunc3(val, d - 1) : val), [])
+function flatFunc3(arr: any[], d = 1): [any] {
+    return d > 0 ? arr.reduce((acc, val): any => acc.concat(Array.isArray(val) ? flatFunc3(val, d - 1) : val), [])
         : arr.slice();
 };
 
@@ -210,5 +208,92 @@ console.log(flatFunc3(arr3, 2))
 
 // [1, 2, 3, 4, 5, 6]
 // just a plug
+
+//Задача – написать функцию factorial(n), которая возвращает n!, используя рекурсию.
+//alert( factorial(5) ); // 120
+
+function factorial(n: number): number {
+    if (n === 1) return n
+    return n * factorial(n - 1)
+}
+
+console.log(factorial(5))
+console.log(factorial(10))
+
+
+//Числа Фибоначчи
+//Последовательность чисел Фибоначчи определяется формулой Fn = Fn-1 + Fn-2. То есть,
+//    следующее число получается как сумма двух предыдущих.
+//    Первые два числа равны 1, затем 2(1+1), затем 3(1+2), 5(2+3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+//    Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+//    Пример работы:
+//    function fib(n) { /* ваш код */ }
+//alert(fib(3)); // 2
+//alert(fib(7)); // 13
+//alert(fib(77)); // 5527939700884757
+function fib(n: number): number {
+    if (n === 1 || n === 2) return 1
+    return fib(n - 1) + fib(n - 2)
+}
+
+function fib2(n: number): number {
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+    return b;
+}
+
+console.log(fib(3))
+console.log(fib(7))
+console.log(fib2(77))
+
+
+//Напишите функцию printList(list), которая выводит элементы списка по одному.
+//Сделайте два варианта решения: используя цикл и через рекурсию.
+let list = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: null
+            }
+        }
+    }
+};
+
+function printList(list:any):any{
+    if(!list) return;
+    console.log(list.value);
+    return printList(list.next)
+}
+
+console.log(printList(list))
+
+function printListReverse(list:any):any{
+    if (list.next) {
+        printListReverse(list.next)
+    }
+    console.log(list.value)
+
+}
+console.log(printListReverse(list))
+
+function printListLoopReverse(list:any):any{
+    let tmp = list;
+    while (tmp) {
+        console.log(tmp.value);
+        tmp = tmp.next;
+    }
+}
+console.log(printListLoopReverse(list))
+
 export default () => {
 };
+

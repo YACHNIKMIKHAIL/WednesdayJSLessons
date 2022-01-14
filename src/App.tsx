@@ -13,7 +13,7 @@ import './lessons/lesson2/lesson2';
 function App() {
     return (
         <div className="container">
-            <Lesson1 />
+            {/*<Lesson1 />*/}
             {/*<Lesson3 />*/}
             {/*<Lesson4 />*/}
         </div>
