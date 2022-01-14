@@ -268,31 +268,61 @@ let list = {
     }
 };
 
-function printList(list:any):any{
-    if(!list) return;
+function printList(list: any): any {
+    if (!list) return;
     console.log(list.value);
     return printList(list.next)
 }
 
 console.log(printList(list))
 
-function printListReverse(list:any):any{
+function printListReverse(list: any): any {
     if (list.next) {
         printListReverse(list.next)
     }
     console.log(list.value)
 
 }
+
 console.log(printListReverse(list))
 
-function printListLoopReverse(list:any):any{
+function printListLoopReverse(list: any): any {
     let tmp = list;
     while (tmp) {
         console.log(tmp.value);
         tmp = tmp.next;
     }
 }
+
 console.log(printListLoopReverse(list))
+
+
+//Армия функций
+
+function makeArmy() {
+    let shooters = [];
+    for (let i = 0; i < 10; i++) {
+        let shooter = function () { // функция shooter
+            alert(i+1); // должна выводить порядковый номер
+            console.log(i+1);
+        };
+        shooters.push(shooter);
+    }
+    return shooters;
+}
+
+let army = makeArmy();
+army[0](); // у 0-го стрелка будет номер 10
+army[1](); // и у 5-го стрелка тоже будет номер 10
+army[2](); // и у 5-го стрелка тоже будет номер 10
+army[3](); // и у 5-го стрелка тоже будет номер 10
+army[4](); // и у 5-го стрелка тоже будет номер 10
+army[5](); // и у 5-го стрелка тоже будет номер 10
+army[6](); // и у 5-го стрелка тоже будет номер 10
+army[7](); // и у 5-го стрелка тоже будет номер 10
+army[8](); // и у 5-го стрелка тоже будет номер 10
+army[9](); // и у 5-го стрелка тоже будет номер 10
+
 
 export default () => {
 };
