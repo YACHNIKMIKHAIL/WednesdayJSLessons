@@ -45,9 +45,9 @@ const Lesson3 = () => {
                     {serachResult.map(m => {
                         debugger
                         return <div key={m.imdbID}>
-                            <div>{m.Title}</div>
+                            <div style={{display:'flex',justifyContent:'space-between',width:'300px',margin:'0 0 20px 0'}}>
+                                <div>{m.Title}</div><div>{m.Year}</div></div>
                             <img src={m.Poster} alt="poster"/>
-                            <div>{m.Year}</div>
                         </div>
                     })}
                 </div>
@@ -63,9 +63,9 @@ const Lesson3 = () => {
                     {serachResultByType.map(m => {
                         debugger
                         return <div key={m.imdbID}>
-                            <div>{m.Title}</div>
+                            <div style={{display:'flex',justifyContent:'space-between',width:'300px',margin:'0 0 20px 0'}}>
+                                <div>{m.Title}</div><div>{m.Year}</div></div>
                             <img src={m.Poster} alt="poster"/>
-                            <div>{m.Year}</div>
                         </div>
                     })}
                 </div>
