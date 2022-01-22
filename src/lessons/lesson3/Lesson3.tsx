@@ -60,7 +60,14 @@ const Lesson3 = () => {
                 <button onClick={searchByType} data-t='movie'>Movie</button>
                 <button onClick={searchByType} data-t='series'>Series</button>
                 <div>
-                    {serachResultByType}
+                    {serachResultByType.map(m => {
+                        debugger
+                        return <div key={m.imdbID}>
+                            <div>{m.Title}</div>
+                            <img src={m.Poster} alt="poster"/>
+                            <div>{m.Year}</div>
+                        </div>
+                    })}
                 </div>
             </div>
         </div>
