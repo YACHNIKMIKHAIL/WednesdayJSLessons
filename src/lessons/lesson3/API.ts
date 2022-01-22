@@ -21,14 +21,14 @@ const API = {
             .catch(err => console.log(err))
     },
     searchFilmsByType: (title: string, type: string) => {
-        axiosInstance.get(title || type)
+        return axiosInstance.get(title || type)
             .then(res => {
-                console.log(res.data)
+                console.log(res.data.Search)
                 return res.data
             })
             .catch(err => console.log(err))
     }
 };
-// API.searchFilmsByTitle('saw')
+ API.searchFilmsByType('','comedy')
 
 export default API;
