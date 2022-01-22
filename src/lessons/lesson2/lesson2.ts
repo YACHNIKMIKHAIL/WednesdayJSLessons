@@ -30,7 +30,7 @@ function sum(a: number) {
     }
 }
 
-console.log(sum(3)(6))
+// console.log(sum(3)(6))
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -49,11 +49,11 @@ function makeCounter() {
 }
 
 const counter = makeCounter()
-console.log(counter())
-console.log(counter())
+// console.log(counter())
+// console.log(counter())
 const counter2 = makeCounter()
-console.log(counter2())
-console.log(counter())
+// console.log(counter2())
+// console.log(counter())
 
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
@@ -82,13 +82,13 @@ function superCounter(n: number) {
 }
 
 let inc = superCounter(7).increase()
-console.log(inc)
+// console.log(inc)
 let dec = superCounter(7).decrease()
-console.log(dec)
+// console.log(dec)
 let res = superCounter(7).reset()
-console.log(res)
+// console.log(res)
 let set = superCounter(18).set()
-console.log(set)
+// console.log(set)
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
@@ -123,17 +123,17 @@ function superSum(num: number) {
 }
 
 
-console.log(superSum(0))
+// console.log(superSum(0))
 //@ts-ignore
-console.log(superSum(3)(2)(5)(3))
+// console.log(superSum(3)(2)(5)(3))
 //@ts-ignore
-console.log(superSum(3)(2)(5, 3))
+// console.log(superSum(3)(2)(5, 3))
 //@ts-ignore
-console.log(superSum(3)(2, 5)(3))
+// console.log(superSum(3)(2, 5)(3))
 //@ts-ignore
-console.log(superSum(3)(2, 5)(3))
+// console.log(superSum(3)(2, 5)(3))
 //@ts-ignore
-console.log(superSum(3)(2, 5)(3, 9))
+// console.log(superSum(3)(2, 5)(3, 9))
 
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
@@ -156,8 +156,8 @@ function sumTo(x: number): number {
     }
 }
 
-console.log(sumTo(4))
-console.log(sumTo(100))
+// console.log(sumTo(4))
+// console.log(sumTo(100))
 
 function sumTo2(x: number) {
     let result = x
@@ -167,19 +167,19 @@ function sumTo2(x: number) {
     return result
 }
 
-console.log(sumTo2(4))
-console.log(sumTo2(100))
+// console.log(sumTo2(4))
+// console.log(sumTo2(100))
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
 let arr = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
 arr.flat(3);
-console.log(arr.flat(3))
+// console.log(arr.flat(3))
 
 const flatFunc = (arr: Array<any>): Array<number> => {
     return arr.reduce((acc: Array<any>, el: number) => acc.concat(el), [])
 }
-console.log(flatFunc([1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]))
+// console.log(flatFunc([1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]]))
 
 function flatFunc2(array: Array<any & Array<any>>): Array<any> {
     let flattend: Array<any> = [];
@@ -193,7 +193,7 @@ function flatFunc2(array: Array<any & Array<any>>): Array<any> {
 }
 
 let arr2 = ['adfsr', 'hfbe', ['hcn', 'hfbe', ['adfsr', 'hfbe', ['hcn', 'hfbe', ['adfsr', 'hfbe']]]]];
-console.log(flatFunc2(arr2))
+// console.log(flatFunc2(arr2))
 
 
 // Для развёртывания многомерных массивов используем рекурсию, reduce и concat
@@ -204,7 +204,7 @@ function flatFunc3(arr: any[], d = 1): [any] {
         : arr.slice();
 };
 
-console.log(flatFunc3(arr3, 2))
+// console.log(flatFunc3(arr3, 2))
 
 // [1, 2, 3, 4, 5, 6]
 // just a plug
@@ -217,8 +217,8 @@ function factorial(n: number): number {
     return n * factorial(n - 1)
 }
 
-console.log(factorial(5))
-console.log(factorial(10))
+// console.log(factorial(5))
+// console.log(factorial(10))
 
 
 //Числа Фибоначчи
@@ -247,9 +247,9 @@ function fib2(n: number): number {
     return b;
 }
 
-console.log(fib(3))
-console.log(fib(7))
-console.log(fib2(77))
+// console.log(fib(3))
+// console.log(fib(7))
+// console.log(fib2(77))
 
 
 //Напишите функцию printList(list), которая выводит элементы списка по одному.
@@ -274,17 +274,17 @@ function printList(list: any): any {
     return printList(list.next)
 }
 
-console.log(printList(list))
+// console.log(printList(list))
 
 function printListReverse(list: any): any {
     if (list.next) {
         printListReverse(list.next)
     }
-    console.log(list.value)
+    // console.log(list.value)
 
 }
 
-console.log(printListReverse(list))
+// console.log(printListReverse(list))
 
 function printListLoopReverse(list: any): any {
     let tmp = list;
@@ -294,7 +294,7 @@ function printListLoopReverse(list: any): any {
     }
 }
 
-console.log(printListLoopReverse(list))
+// console.log(printListLoopReverse(list))
 
 
 //Армия функций
@@ -303,8 +303,8 @@ function makeArmy() {
     let shooters = [];
     for (let i = 0; i < 10; i++) {
         let shooter = function () { // функция shooter
-            alert(i+1); // должна выводить порядковый номер
-            console.log(i+1);
+            // alert(i+1); // должна выводить порядковый номер
+            // console.log(i+1);
         };
         shooters.push(shooter);
     }
