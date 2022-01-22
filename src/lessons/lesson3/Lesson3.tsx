@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import API from './API';
 import './lesson_3';
 
+
+type ResultType = {
+    Poster: string
+    Title: string
+    Type: string
+    Year: string
+    imdbID: string
+}
 const Lesson3 = () => {
     const [searchName, setSearchName] = useState('');
-    const [serachResult, setSerachResult] = useState('');
+    const [serachResult, setSearchResult] = useState<Array<ResultType>>([]);
     const [searchNameByType, setSearchNameByType] = useState('');
     const [serachResultByType, setSerachResultByType] = useState('');
 
     const searchFilm = () => {
         API.searchFilmsByTitle(searchName)
+            .then(res => {
+                console.log(res.Search)
+                setSearchResult([...res.Search])
+            })
     };
 
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -25,13 +37,20 @@ const Lesson3 = () => {
                 <input type="text" value={searchName} onChange={(e) => setSearchName(e.currentTarget.value)}/>
                 <button onClick={searchFilm}>Search</button>
                 <div>
-                    {serachResult}
+                    {serachResult.map(m => {
+                        return <div key={m.imdbID}>
+                            <div>{m.Title}</div>
+                            <img src={m.Poster} alt="poster"/>
+                            <div>{m.Year}</div>
+                        </div>
+                    })}
                 </div>
             </div>
 
             <div>
                 <h3><p>Search by type:</p></h3>
-                <input type="text" value={searchNameByType} onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
+                <input type="text" value={searchNameByType}
+                       onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
                 <button onClick={searchByType} data-t='movie'>Movie</button>
                 <button onClick={searchByType} data-t='series'>Series</button>
                 <div>

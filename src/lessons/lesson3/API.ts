@@ -9,17 +9,26 @@ const axiosInstance = axios.create(configOMB);
 
 const API = {
     searchFilmsByTitle: (title: string) => {
-        axiosInstance.get(title)
-            .then(res => res.data)
-            .then(data => console.log(data))
-            .catch(err => console.log('Please try later ' + err))
+       return axiosInstance.get(title)
+            .then(res => {
+                // console.log(res)
+                return res.data
+            })
+            .then(data => {
+                // console.log(data)
+                return data
+            })
+            .catch(err => console.log(err))
     },
     searchFilmsByType: (title: string, type: string) => {
         axiosInstance.get(title || type)
-            .then(res => res.data)
-            .then(data=>data.data)
+            .then(res => {
+                console.log(res.data)
+                return res.data
+            })
+            .catch(err => console.log(err))
     }
 };
-API.searchFilmsByTitle('Batman')
+// API.searchFilmsByTitle('saw')
 
 export default API;
