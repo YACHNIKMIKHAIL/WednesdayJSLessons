@@ -18,7 +18,7 @@ const API = {
                 // console.log(data)
                 return data
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     },
     searchFilmsByType: (title: string, type: string) => {
         return axiosInstance.get(title || type)
@@ -29,6 +29,5 @@ const API = {
             .catch(err => console.log(err))
     }
 };
- API.searchFilmsByType('','comedy')
 
 export default API;
