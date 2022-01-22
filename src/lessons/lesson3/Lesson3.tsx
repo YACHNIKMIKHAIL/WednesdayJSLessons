@@ -15,12 +15,17 @@ const Lesson3 = () => {
     const [serachResult, setSearchResult] = useState<Array<ResultType>>([]);
     const [searchNameByType, setSearchNameByType] = useState<string>('');
     const [serachResultByType, setSerachResultByType] = useState<Array<ResultType>>([]);
+    const [error,setError]=useState<boolean>(false)
 
     const searchFilm = () => {
         API.searchFilmsByTitle(searchName)
             .then(res => {
-                console.log(res.Search)
-                setSearchResult([...res.Search])
+                if(!res.Response) {
+                    console.log(res.Search)
+                    setSearchResult([...res.Search])
+                }else{
+                    setError(true)
+                }
             })
     };
 
@@ -28,9 +33,12 @@ const Lesson3 = () => {
         const type: string = e.currentTarget.dataset.t ? e.currentTarget.dataset.t : '';
         API.searchFilmsByType(searchNameByType, type)
             .then(res=>{
-                debugger
-                setSerachResultByType([...res.Search])
-                console.log(res)
+                if(!res.Response) {
+                    setSerachResultByType([...res.Search])
+                    console.log(res)
+                }else {
+                    setError(true)
+                }
             })
     }
 
@@ -42,8 +50,9 @@ const Lesson3 = () => {
                 <input type="text" value={searchName} onChange={(e) => setSearchName(e.currentTarget.value)}/>
                 <button onClick={searchFilm}>Search</button>
                 <div>
+                    {error?<div>Incorrect name</div>:''}
                     {serachResult.map(m => {
-                        debugger
+                        // debugger
                         return <div key={m.imdbID}>
                             <div style={{display:'flex',justifyContent:'space-between',width:'300px',margin:'0 0 20px 0'}}>
                                 <div>{m.Title}</div><div>{m.Year}</div></div>
@@ -60,6 +69,7 @@ const Lesson3 = () => {
                 <button onClick={searchByType} data-t='movie'>Movie</button>
                 <button onClick={searchByType} data-t='series'>Series</button>
                 <div>
+                    {error?<div>Incorrect type</div>:''}
                     {serachResultByType.map(m => {
                         debugger
                         return <div key={m.imdbID}>
