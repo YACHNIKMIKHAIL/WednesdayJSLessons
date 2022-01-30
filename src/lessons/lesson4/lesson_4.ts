@@ -7,7 +7,12 @@ console.log('lesson 4');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
+const taskOne = new Promise((resolve, reject) => {
+    setTimeout(() => {
+    }, 300);
+});
 
+console.log(taskOne);
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
@@ -57,6 +62,6 @@ console.log('lesson 4');
 // и выведите в консоль {name, age, city}
 
 
-
 // just a plug
-export default ()=>{};
+export default () => {
+};

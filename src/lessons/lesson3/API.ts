@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {Simulate} from "react-dom/test-utils";
 
 //http://www.omdbapi.com/?apikey=[6161f9e6]&
 const configOMB = {
@@ -9,16 +10,14 @@ const axiosInstance = axios.create(configOMB);
 
 const API = {
     searchFilmsByTitle: (title: string) => {
-       return axiosInstance.get(title)
+        return axiosInstance.get(title)
             .then(res => {
-                // console.log(res)
                 return res.data
             })
             .then(data => {
-                // console.log(data)
                 return data
             })
-            .catch(err => alert(err))
+            .catch(err => console.log(err))
     },
     searchFilmsByType: (title: string, type: string) => {
         return axiosInstance.get(title || type)
