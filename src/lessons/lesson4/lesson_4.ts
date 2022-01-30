@@ -1,5 +1,3 @@
-import {log} from "util";
-
 console.log('lesson 4');
 
 // http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
@@ -9,7 +7,7 @@ console.log('lesson 4');
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
-const taskOne = new Promise((resolve, reject) => {
+const taskOne = new Promise(() => {
     setTimeout(() => {
     }, 300);
 });
@@ -20,7 +18,7 @@ console.log(taskOne);
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
-const taskTwo = new Promise((resolve, reject) => {
+const taskTwo = new Promise((resolve) => {
     return resolve('Promise Data')
 })
 taskTwo.then(res => console.log(res))
@@ -29,14 +27,22 @@ taskTwo.then(res => console.log(res))
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
-
+const taskThree = new Promise((reject) => {
+    return reject('Promise Error')
+})
+taskThree.then(rej => console.log(rej))
 
 // Task 04
 // Создайте промис, который переходит в состояние resolved через 3с.
 // (Используйте setTimeout)
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
-
+const taskFour = new Promise((reject) => {
+    setTimeout(() => {
+        return reject('Promise Data')
+    }, 3000)
+})
+taskFour.then((e) => console.log(e))
 
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:
@@ -58,7 +64,19 @@ taskTwo.then(res => console.log(res))
 // прибавляет к нему Ваше имя и возвращает новую строку из функции
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
-
+const print = (param: string) => {
+    console.log(param)
+}
+const onSuccess = (param: string) => {
+    return `${param} Mikhail`
+}
+const taskFive = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        return resolve("My name is")
+    }, 1000)
+})
+taskFive.then(res => onSuccess(res as string))
+    .then(res => print(res))
 
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
