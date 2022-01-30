@@ -70,7 +70,7 @@ const print = (param: string) => {
 const onSuccess = (param: string) => {
     return `${param} Mikhail`
 }
-const taskFive = new Promise((resolve, reject) => {
+const taskFive = new Promise((resolve) => {
     setTimeout(() => {
         return resolve("My name is")
     }, 1000)
@@ -84,6 +84,27 @@ taskFive.then(res => onSuccess(res as string))
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
+const taskSevenI = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        return resolve({name: "Anna"})
+    }, 2000)
+})
+const taskSevenII = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        return resolve({age: 16})
+    }, 3000)
+})
+const taskSevenIII = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        return resolve({city: ''})
+    }, 4000)
+})
+
+const result = Promise.all([taskSevenI, taskSevenII, taskSevenIII])
+result.then(res=>{
+        // console.log(Object.assign({...res}))
+        console.log({...res})
+    })
 
 // just a plug
 export default () => {
