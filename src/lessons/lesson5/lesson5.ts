@@ -52,24 +52,27 @@ type CounterType = {
     getCurrentCount: () => number
     increment: () => void
     decrement: () => void
-    setCurrentCount: (n: number) => number
+    setCurrentCount: (n: number) => any
     restCurrentCount: () => void
 }
 let counter: CounterType = {
     count: 0,
-    getCurrentCount() {
+    getCurrentCount: function () {
         return this.count
     },
-    increment() {
-        this.count = counter.count + 1
+    increment: function () {
+        this.count++
+        return this
     },
-    decrement() {
-        this.count = counter.count - 1
+    decrement: function () {
+        this.count--
+        return this
     },
-    setCurrentCount(n: number) {
-       return this.count = n
+    setCurrentCount: function (n: number) {
+        this.count = n
+        return this
     },
-    restCurrentCount() {
+    restCurrentCount: function () {
         this.count = 0
     }
 }
@@ -81,7 +84,7 @@ counter.decrement()
 console.log(counter.getCurrentCount())
 
 
-// console.log(counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount())
+console.log(counter.setCurrentCount(10).increment().increment().increment().decrement().getCurrentCount())
 
 
 // Task 03
