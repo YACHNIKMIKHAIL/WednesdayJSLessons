@@ -9,7 +9,7 @@ console.log('Lesson 5');
 // А тут заходим и ставим лайк!!!
 // https://www.youtube.com/watch?v=T1vJ8OdJq0o done
 
-// https://www.youtube.com/watch?v=xY-mwUzDjsk
+// https://www.youtube.com/watch?v=xY-mwUzDjsk done
 
 // Keyword - new. Function-constructor
 // https://learn.javascript.ru/constructor-new
@@ -28,16 +28,23 @@ console.log('Lesson 5');
 type someObjType = {
     name: string;
     age: number;
-    greeting: () => string
+    // greeting: () => string
 }
 
 let someObj: someObjType = {
     name: 'Eugene',
     age: 32,
-    greeting() {
-        return `My name is ${this.name}. I am ${this.age}`
-    }
+    // greeting() {
+    //     return `My name is ${this.name}. I am ${this.age}`
+    // }
 }
+function greeting() {
+    //@ts-ignore
+    return `My name is ${this.name}. I am ${this.age}`
+}
+//@ts-ignore
+someObj.greeting=greeting
+//@ts-ignore
 console.log(someObj.greeting())
 // Task 02
 // реализовать счетчик counter в виде объекта со следующими методами:
@@ -104,6 +111,18 @@ const myFirstConstructorFunc = (name: string, age: number) => {
 }
 console.log(myFirstConstructorFunc('hfued', 50))
 
+
+function MyFirstConstructorFunc(name: any, age: any) {
+    // @ts-ignore
+    this.name = name
+    // @ts-ignore
+    this.age = age
+}
+// @ts-ignore
+
+MyFirstConstructorFunc.prototype.greeting = someObj.greeting
+// @ts-ignore
+
 // Task 05 есть 2 объекта One и Two. С помощью bind и метода sayHello заставьте поздороваться объект One
 
 type OneType = { name: string }
@@ -150,6 +169,23 @@ let helperObj: helperObjType = {
         console.log(`Hello, my name is ${this.name}`)
     }
 }
+
+
+// const helperObj: any = {
+//     name: '',
+//     age: 0,
+//     changeName(name: string) {
+//         this.name = name
+//         return this
+//     },
+//     setAge(age: number) {
+//         this.age = age
+//         return this
+//     },
+//     greeting:
+//     Two.sayHello
+// }
+
 helperObj.changeName('ggg')
 console.log(helperObj)
 helperObj.setAge(99)
