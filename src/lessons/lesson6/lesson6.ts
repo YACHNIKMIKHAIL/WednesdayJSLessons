@@ -1,4 +1,4 @@
-import {log} from "util";
+import {isNumber, log} from "util";
 
 console.log('Lesson 6');
 
@@ -37,7 +37,7 @@ class Student implements IStudent {
         this.bestScore = this.scores.reduce((sum, mark) => sum + mark) / this.scores.length;
     }
 
-    sortBestScore(Student1: IStudent, Student2: IStudent) {
+    private static sortBestScore(Student1: IStudent, Student2: IStudent) {
         if (Student1.bestScore > Student2.bestScore) {
             return 1
         } else if (Student1.bestScore < Student2.bestScore) {
@@ -47,30 +47,30 @@ class Student implements IStudent {
         }
     }
 
-    sortStudents(students: IStudent[]) {
+    static sortStudents(students: IStudent[]) {
         // return [...students].sort(this.sortBestScore)
         const temp = [...students];
         return temp.sort(this.sortBestScore);
     }
 
 
-    sortScoreThanOnlyFour(scores: number[]) {
+    private static sortScoreThanOnlyFour(scores: number[]) {
         return scores.every(score => score === 4)
     }
 
-    sortScoreThanOnlyFive(scores: number[]) {
+    private static sortScoreThanOnlyFive(scores: number[]) {
         return scores.every(score => score === 5)
     }
 
 
-    sortBestStudents(students: IStudent[]
+    private static sortBestStudents(students: IStudent[]
     ) {
         let res = students.filter(f => f.bestScore === 4
             || f.bestScore === 5)
         return res
     }
 
-    showStudents(students: IStudent[]) {
+    static showStudents(students: IStudent[]) {
         this.sortBestStudents(students).forEach(stu => {
             console.log(`Student ${stu.name} from ${stu.numberOfGroop}`)
         })
@@ -87,8 +87,8 @@ students.push(new Student('Test', 'Testovich', 6, [3, 5, 3, 5]));
 
 console.log(students);
 
-// console.log(Student.sortStudents(students));
-// Student.showStudents(students);
+console.log(Student.sortStudents(students));
+Student.showStudents(students);
 
 
 // Task 02
@@ -96,12 +96,79 @@ console.log(students);
 // Можно ли создать метод на экземпляре класса который будет удалять сам экземпляр класса?
 // Можно ли создать метод класса который будет удалять экземпляр класса?
 
+class Two {
+    s: any
+    f: any
+
+    constructor(s: any = 'ddd', f: any = 999) {
+        this.s = s
+        this.f = f
+    }
+}
+
 // Task 03
 // Составить описание класса для представления времени. Предусмотреть возможности установки времени и изменения его отдельных
 // полей (час, минута, секунда) с проверкой допустимости вводимых значений. В случае недопустимых значений полей выбрасываются исключения.
 // Создать методы изменения времени на заданное количество часов, минут и секунд.
 // Создать метод выводящий время в строке формата HH:MM:SS
 // Создать класс по вышеуказанному описанию
+
+interface IClock {
+    sec: number|undefined;
+    min: number|undefined;
+    hr: number|undefined;
+    setHr: (hr: number) => void ;
+    setMin: (min: number) => void ;
+    setSec: (sec: number) =>  void ;
+}
+
+class Clock implements IClock {
+    sec: number |undefined
+    min: number |undefined
+    hr: number |undefined
+
+    constructor(sec: number, min: number, hr: number) {
+        this.sec = this.lookForSec(sec)
+        this.min = this.lookForMin(min)
+        this.hr = this.lookForHr(hr)
+    }
+    private lookForSec(sec: number) {
+        if (sec > 0 && sec < 61) {
+            return sec
+        }
+    }
+    private lookForMin(min: number) {
+        if (min > 0 && min < 61) {
+            return min
+        }
+    }
+    private lookForHr(hr: number) {
+        if (hr > 0 && hr < 25) {
+            return hr
+        }
+    }
+     setSec(s: number) {
+        this.sec = this.lookForSec(s)
+    }
+     setMin(m: number) {
+        this.min = this.lookForMin(m)
+    }
+     setHr(h: number) {
+        this.hr = this.lookForHr(h)
+    }
+     showTime(){
+        return this.hr+' '+this.min+' '+this.sec
+    }
+
+}
+//@ts-ignore
+Clock.setSec(30)
+//@ts-ignore
+Clock.setMin(30)
+//@ts-ignore
+Clock.setHr(3)
+//@ts-ignore
+Clock.showTime()
 
 // Task 04
 // Класс Покупатель: Фамилия, Имя, Адрес, Номер банковского счета;
