@@ -7,7 +7,7 @@ console.log('Lesson 6');
 // https://medium.com/front-stories/%D0%BA%D0%B0%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%8E%D1%82-%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B-%D0%B2-javascript-7978c0003f1d done
 // https://www.typescriptlang.org/docs/handbook/classes.html
 // https://www.youtube.com/watch?v=BASquaxab_w done
-// https://www.youtube.com/watch?v=uLY9GXGMXaA
+// https://www.youtube.com/watch?v=uLY9GXGMXaA done
 
 // Task 01
 // Создайте структуру с именем student, содержащую поля: имя и фамилия, номер группы, успеваемость (массив из пяти элементов).
@@ -77,6 +77,7 @@ class Student implements IStudent {
     }
 }
 
+//let summ = [student1, student2, student3].sort((a,b) => b.score.reduce((e, f) => e + f, 0) - a.score.reduce((c, d) => c + d, 0))
 let students = [];
 students.push(new Student('Eugene', 'Sheuchuk', 1, [4, 4, 4, 4, 4]));
 students.push(new Student('Vlad', 'Bizin', 2, [5, 5, 5, 5, 5]));
@@ -97,10 +98,7 @@ Student.showStudents(students);
 // Можно ли создать метод класса который будет удалять экземпляр класса?
 
 class Two {
-    s: any
-    f: any
-
-    constructor(s: any = 'ddd', f: any = 999) {
+    constructor(public s = 'ddd', public f = 999) {
         this.s = s
         this.f = f
     }
@@ -114,61 +112,92 @@ class Two {
 // Создать класс по вышеуказанному описанию
 
 interface IClock {
-    sec: number|undefined;
-    min: number|undefined;
-    hr: number|undefined;
-    setHr: (hr: number) => void ;
-    setMin: (min: number) => void ;
-    setSec: (sec: number) =>  void ;
+    sec: number | undefined;
+    min: number | undefined;
+    hr: number | undefined;
+    setHr: (hr: number) => void;
+    setMin: (min: number) => void;
+    setSec: (sec: number) => void;
 }
 
 class Clock implements IClock {
-    sec: number |undefined
-    min: number |undefined
-    hr: number |undefined
+    sec: number | undefined
+    min: number | undefined
+    hr: number | undefined
 
     constructor(sec: number, min: number, hr: number) {
         this.sec = this.lookForSec(sec)
         this.min = this.lookForMin(min)
         this.hr = this.lookForHr(hr)
     }
+
     private lookForSec(sec: number) {
         if (sec > 0 && sec < 61) {
             return sec
         }
     }
+
     private lookForMin(min: number) {
         if (min > 0 && min < 61) {
             return min
         }
     }
+
     private lookForHr(hr: number) {
         if (hr > 0 && hr < 25) {
             return hr
         }
     }
-     setSec(s: number) {
+
+    setSec(s: number) {
         this.sec = this.lookForSec(s)
     }
-     setMin(m: number) {
+
+    setMin(m: number) {
         this.min = this.lookForMin(m)
     }
-     setHr(h: number) {
+
+    setHr(h: number) {
         this.hr = this.lookForHr(h)
     }
-     showTime(){
-        return this.hr+' '+this.min+' '+this.sec
+
+    showTime() {
+        return this.hr + ' ' + this.min + ' ' + this.sec
     }
 
 }
-//@ts-ignore
-Clock.setSec(30)
-//@ts-ignore
-Clock.setMin(30)
-//@ts-ignore
-Clock.setHr(3)
-//@ts-ignore
-Clock.showTime()
+//
+// class Clock {
+//     private date: Date
+//     private hours: number
+//     private minutes: number
+//     private seconds: number
+//
+//     constructor() {
+//         this.date = new Date()
+//         this.hours = this.date.getHours()
+//         this.minutes = this.date.getMinutes()
+//         this.seconds = this.date.getSeconds()
+//     }
+//
+//     private translate(method: number) {
+//         if (method < 10) {
+//             return '0' + method
+//         }
+//         return method
+//     }
+//
+//     public setHours(hours: number, minutes: number
+//     public setHours(hours: number, minutes: number, seconds: number) {
+//         this.hours = hours
+//         this.minutes = minutes
+//         this.seconds = seconds
+//     }
+//
+//     public getTime() {
+//         return `${this.translate(this.hours)}:${this.translate(this.minutes)}:${this.translate(this.seconds)}`
+//     }
+// }
 
 // Task 04
 // Класс Покупатель: Фамилия, Имя, Адрес, Номер банковского счета;
