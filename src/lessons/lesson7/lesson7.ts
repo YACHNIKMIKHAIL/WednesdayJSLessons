@@ -21,8 +21,9 @@ console.log('Lesson 7');
 // проверить, что методы работают
 
 class Animal {
-    name:string
-    constructor(name:string) {
+    name: string
+
+    constructor(name: string) {
         this.name = name
     }
 
@@ -46,7 +47,7 @@ dog.sleep()
 // параметра, реализовать методы roar и climb аналогично классу Animal
 // проверить, что все методы работают
 class Monkey extends Animal {
-    constructor(name:string) {
+    constructor(name: string) {
         super(name);
     }
 
@@ -68,7 +69,7 @@ monkey.sleep()
 // параметра, реализовать методы speak и think аналогично классу Animal
 // проверить, что все методы работают
 class Human extends Monkey {
-    constructor(name:string) {
+    constructor(name: string) {
         super(name);
     }
 
@@ -80,7 +81,8 @@ class Human extends Monkey {
         return `${this.name} thinking`
     }
 }
-let human=new Human('human')
+
+let human = new Human('human')
 human.speak()
 human.climb()
 human.walk()
@@ -93,5 +95,7 @@ human.walk()
 // Используя метод Apply реализовать свой собственный метод bind
 
 
+
 // just a plug
-export default () => {};
+export default () => {
+};
