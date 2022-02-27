@@ -1,62 +1,103 @@
 // Task 1
-// Есть некоторая строка (const str = 'fgfggg';), что будет, если мы возьмем str[0]
+// Есть некоторая строка (const str = 'fgfggg';), что будет, если мы возьмем str[0] =>f
+// const str = 'fgfggg'
+// console.log(str[0])
 
 // Task 2
 // Реализуйте необходимый код, что бы выражение (2).plus(3).minus(1) сработало и вернуло 4
 
 // Task 3
 // Реализуйте функцию, которая принимает следующие аргументы (строки) '*', '1', 'b', '1c', и возвращает строку '1*b*1c'
+// function getStr() {
+//     return [].slice.call(arguments, 1).join(arguments[0])
+// }
 
+// console.log(getStr('*', '1', 'b', '1c'))
 // Task 4
 // Напишите функцию которая найдет сумму всех вершин в структуре данны типа tree
 // Рекурсивно
 // В цикле
 
 const tree = {
-	valueNode: 3,
-	next: [{
-		valueNode: 1,
-		next: null
-	},
-		{
-			valueNode: 3,
-			next: null
-		},
-		{
-			valueNode: 2,
-			next: null
-		},
-		{
-			valueNode: 2,
-			next: [
-				{
-					valueNode: 1,
-					next: null
-				},
-				{
-					valueNode: 5,
-					next: null
-				}
-			]
-		}]
+    valueNode: 3,
+    next: [{
+        valueNode: 1,
+        next: null
+    },
+        {
+            valueNode: 3,
+            next: null
+        },
+        {
+            valueNode: 2,
+            next: null
+        },
+        {
+            valueNode: 2,
+            next: [
+                {
+                    valueNode: 1,
+                    next: null
+                },
+                {
+                    valueNode: 5,
+                    next: null
+                }
+            ]
+        }]
 };
+
+// var sum = 0;
+//
+// function getSumRec(obj) {
+//     sum += obj.valueNode;
+//     if (obj.next != null) {
+//         for (var i = 0; i < obj.next.length; i++) {
+//             getSumRec(obj.next[i]);
+//         }
+//     }
+//
+//     return sum;
+// }
+//
+// function getSumLoop(obj) {
+//     var arr = [obj],
+//         sum = 0,
+//         current;
+//
+//     while (arr.length > 0) {
+//         current = arr.shift();
+//         sum += current.valueNode;
+//
+//         if (current.next != null) {
+//             for (var i = 0; i < current.next.length; i++) {
+//                 arr.push(current.next[i]);
+//             }
+//         }
+//     }
+//
+//     return sum;
+// }
+//
+// console.log(getSumRec(tree))
+// console.log(getSumLoop(tree))
 
 // Task 5
 // исправить код, что бы работал правильно
 
 for (var i = 0; i < 10; i++) {
-	setTimeout(function () {
-		console.log(i);
-	}, 100);
+    setTimeout(function () {
+        // console.log(i);
+    }, 100);
 }
 
 // Task 6
 // Реализуйте функцию Foo, что бы все корректно работало
 
 function Book(name, author) {
-	this.name = name;
-	this.author = author;
-	return this;
+    this.name = name;
+    this.author = author;
+    return this;
 }
 
 // function Foo(Book, 'Учебник javascript', 'Петр Сергеев')
@@ -91,23 +132,23 @@ function Book(name, author) {
 // getTreeValues(tree); // => [1, 2, 3, 4, 5, 6, 7]
 
 const tree2 = {
-	value: 1,
-	children: [
-		{
-			value: 2,
-			children: [
-				{ value: 4 },
-				{ value: 5 },
-			]
-		},
-		{
-			value: 3,
-			children: [
-				{ value: 6 },
-				{ value: 7 },
-			]
-		}
-	]
+    value: 1,
+    children: [
+        {
+            value: 2,
+            children: [
+                {value: 4},
+                {value: 5},
+            ]
+        },
+        {
+            value: 3,
+            children: [
+                {value: 6},
+                {value: 7},
+            ]
+        }
+    ]
 };
 
 // Task 15
@@ -148,14 +189,14 @@ const tree2 = {
 // Task 21
 // Что выведет консоль?
 
-Promise
-	.resolve()
-	.then(() => console.log(1))
-	.then(() => console.log(2))
-	.then(() => console.log(3));
-
-Promise
-	.resolve()
-	.then(() => console.log(4))
-	.then(() => console.log(5))
-	.then(() => console.log(6));
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(1))
+// 	.then(() => console.log(2))
+// 	.then(() => console.log(3));
+//
+// Promise
+// 	.resolve()
+// 	.then(() => console.log(4))
+// 	.then(() => console.log(5))
+// 	.then(() => console.log(6));
