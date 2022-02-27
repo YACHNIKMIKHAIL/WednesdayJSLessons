@@ -113,18 +113,113 @@ const tree = {
 // Task 7
 // Реализовать функцию f: f(2, 3) -> 5, при вызове f(2)(3), тоже вернет 5
 
+function f(a, b) {
+    if (b !== undefined) {
+        return a + b;
+    } else {
+        return function (b) {
+            return a + b;
+        }
+    }
+}
+
 // Task 8
 // Реализовать функцию f: f(1)(2)(3)() -> 6, f(0)(3)(1)(5)() -> 8
 
+function foo(value) {
+    var acc = value;
+
+    function addNext(next) {
+        acc += next;
+        return addNext;
+    }
+
+    addNext.toString = addNext.valueOf = function () {
+        return acc;
+    }
+    return addNext;
+}
+
 // Task 9
 // Реализовать функции seven, plus, one, five, minus, two так, что бы следующие вызовы работали seven(plus(one())) -> 8. five(minus(two())) -> 3
+function one(arg) {
+    return 1 + (arg || 0);
+}
 
+function two(arg) {
+    return 2 + (arg || 0);
+}
+
+function five(arg) {
+    return 5 + (arg || 0);
+}
+
+function seven(arg) {
+    return 7 + (arg || 0);
+}
+
+function plus(arg) {
+    return arg;
+}
+
+function minus(arg) {
+    return -arg;
+}
+
+// console.log(seven(plus(one())))
+// console.log(five(minus(two())))
 // Task 10
 // Реализовать функцию сортировки массива пузырьком
+var m = [1, 7, 5, 13, 8],
+    count = m.length - 1,
+    max;
+for (var i = 0; i < count; i++) {
+    for (var j = 0; j < count - i; j++) {
+        if (m[j] > m[j + 1]) {
+            max = m[j];
+            m[j] = m[j + 1];
+            m[j + 1] = max;
+        }
+    }
+}
 
 // Task 11
 // Есть строка, состоящая из разных скобок - str = "())({}}{()][][", написать функцию проверки закрыты ли все.
+function validBraces(str) {
 
+    var arrOpenSymbols = [],
+        result = false,
+        countOpenSymbols;
+    if (str.length > 0) {
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] === '{' || str[i] === '[' || str[i] === '(') {
+                arrOpenSymbols.push(str[i]);
+            } else {
+                countOpenSymbols = arrOpenSymbols.length;
+                if ((str[i] === '}' && arrOpenSymbols[(countOpenSymbols - 1)] === '{') ||
+                    (str[i] === ']' && arrOpenSymbols[(countOpenSymbols - 1)] === '[') ||
+                    (str[i] === ')' && arrOpenSymbols[(countOpenSymbols - 1)] === '(')
+                ) {
+                    arrOpenSymbols.pop();
+                }
+            }
+        }
+
+        if (arrOpenSymbols.length === 0) {
+            result = true;
+        } else {
+            result = false;
+        }
+    }
+    return result;
+}
+
+console.log('');
+console.log(validBraces('()'));
+console.log(validBraces('[)'));
+console.log(validBraces('{}[]()'));
+console.log(validBraces('([{}])'));
+console.log(validBraces('())({}}{()][]['));
 // Task 12
 // Необходимо написать функцию, принимающую в аргументах массив целых чисел и возвращающую новый массив, состоящий только из уникальных значений первого массива.
 
