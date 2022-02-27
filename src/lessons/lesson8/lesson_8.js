@@ -85,22 +85,27 @@ const tree = {
 // Task 5
 // исправить код, что бы работал правильно
 
-for (var i = 0; i < 10; i++) {
-    setTimeout(function () {
-        // console.log(i);
-    }, 100);
-}
+// for (let i = 0; i < 10; i++) {
+//     setTimeout(function () {
+//         console.log(i);
+//     }, 100);
+// }
 
 // Task 6
 // Реализуйте функцию Foo, что бы все корректно работало
 
-function Book(name, author) {
-    this.name = name;
-    this.author = author;
-    return this;
-}
-
-// function Foo(Book, 'Учебник javascript', 'Петр Сергеев')
+// function Book(name, author) {
+//     this.name = name;
+//     this.author = author;
+//     return this;
+// }
+//
+// function Foo(Cclass, name, author) {
+//     return Cclass.call({}, name, author);
+// }
+//
+//
+// // function Foo(Book, 'Учебник javascript', 'Петр Сергеев')
 //
 // var book = Foo(Book, 'js', 'petr');
 // console.log(book.name);
