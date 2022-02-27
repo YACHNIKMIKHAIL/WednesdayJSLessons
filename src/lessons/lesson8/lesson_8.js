@@ -248,7 +248,7 @@ function func(arr) {
 }
 
 
-console.log(func([1, 2, null, 7, 8, null, 3]))
+// console.log(func([1, 2, null, 7, 8, null, 3]))
 // Task 14
 // Необходимо написать функцию, возвращающую значения всех вершин дерева
 // getTreeValues(tree); // => [1, 2, 3, 4, 5, 6, 7]
@@ -273,6 +273,35 @@ const tree2 = {
     ]
 };
 
+function getTreeValuesI(tree) {
+    let values = [tree.value];
+
+    if (Array.isArray(tree.children)) {
+        tree.children.forEach(item => values = values.concat(getTreeValuesI(item)));
+    }
+
+    return values;
+}
+
+function getTreeValuesII(tree) {
+    const tmpTree = [tree];
+    const res = [];
+    let current;
+
+    while (tmpTree.length > 0) {
+        current = tmpTree.shift();
+        res.push(current.value);
+
+        if (current.children) {
+            current.children.forEach(item => tmpTree.push(item));
+        }
+    }
+
+    return res
+}
+
+console.log(getTreeValuesI(tree2))
+console.log(getTreeValuesII(tree2))
 // Task 15
 // Необходимо написать функцию, возвращающую сумму всех вершин дерева из Task 14
 
