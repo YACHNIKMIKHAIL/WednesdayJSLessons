@@ -214,19 +214,41 @@ function validBraces(str) {
     return result;
 }
 
-console.log('');
-console.log(validBraces('()'));
-console.log(validBraces('[)'));
-console.log(validBraces('{}[]()'));
-console.log(validBraces('([{}])'));
-console.log(validBraces('())({}}{()][]['));
+// console.log('');
+// console.log(validBraces('()'));
+// console.log(validBraces('[)'));
+// console.log(validBraces('{}[]()'));
+// console.log(validBraces('([{}])'));
+// console.log(validBraces('())({}}{()][]['));
 // Task 12
 // Необходимо написать функцию, принимающую в аргументах массив целых чисел и возвращающую новый массив, состоящий только из уникальных значений первого массива.
+function uniqueI(arr) {
+    return arr.filter((item, index, self) => (self.indexOf(item) === index));
+}
 
+function uniqueII(arr) {
+    const res = {};
+
+    arr.forEach((item) => {
+        res[item] = '';
+    });
+
+    return Object.keys(res).map(item => Number(item));
+}
+
+// console.log(uniqueI([1, 1, 1, 2]))
+// console.log(uniqueII([1, 1, 1, 2]))
 // Task 13
 // Написать функцию, принимающую аргументом массив чисел и возвращающую новый массив, состоящий из удвоенных значений первого.
 // f([1, 2, null, 7, 8, null, 3]); // => [2, 4, 14, 16, 6]
+function func(arr) {
+    return arr
+        .filter(item => item !== null)
+        .map(item => item * 2);
+}
 
+
+console.log(func([1, 2, null, 7, 8, null, 3]))
 // Task 14
 // Необходимо написать функцию, возвращающую значения всех вершин дерева
 // getTreeValues(tree); // => [1, 2, 3, 4, 5, 6, 7]
